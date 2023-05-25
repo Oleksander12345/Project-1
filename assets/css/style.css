@@ -80,6 +80,7 @@ hr {
     z-index: 1000;
 }
 .header.fixed {
+    padding: 10px 0;
     background-color: #eb8b8d;
     position: fixed;
     top: 0;
@@ -152,6 +153,10 @@ hr {
     background: none;
     cursor: pointer;
     display: none;
+
+}
+.nav-toggle:focus {
+    outline: 0;
 }
 .nav-toggle_item {
     width: 100%;
@@ -1117,6 +1122,9 @@ hr {
         top: 100%;
         left: 0;
         background-color: #eb8b8d;
+    }
+    .nav.active {
+        display: block;
     }
     .nav_link {
         display: block;

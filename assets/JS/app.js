@@ -1,14 +1,49 @@
 $(function () {
     var header = $("#header"),
         introH = $("#intro").innerHeight(),
-        scrolOffset = 0;
-$(window).on("scrol", function () {
+        scrolOffset = $(window).scrollTop();
+    // Fixed header
+    checkScroll(scrolOffset);
+    $(window).on("scroll", function () {
         scrolOffset = $(this).scrollTop();
-        if ( scrolOffset >= introH) {
+        checkScroll(scrolOffset);
+    });
+    
+    function checkScroll(scrolOffset) {
+        if (scrolOffset >= introH) {
             header.addClass("fixed");
         } else {
             header.removeClass("fixed");
         }
+    }
+
+
+    // Smooth scroll
+    $("[data-scroll]").on("click", function (event) {
+        event.preventDefault();
+        var $this = $(this),
+            blockId = $this.data('scroll'),
+            blockOffset = $(blockId).offset().top;
+        $("#nav a").removeClass("active");
+        $this.addClass("active");
+        $("html, body").animate({
+            scrollTop: blockOffset
+        }, 500);
+    });
+
+    // Menu nav toggle
+    $("#nav_toggle").on("click", function(event) {
+        event.preventDefault();
+        $(this).toggleClass("active");
+        $("nav").toggleClass("active");
+    });
+
+    // Collapse
+    $("[data-scroll]").on("click", function (event) {
+        event.preventDefault();
+        var $this = $(this),
+            blockId = $this.data('collapse');
+        $(blockId).slideToggle();
     });
 
 
